@@ -35,9 +35,11 @@ export const login =async (req, res) => {
 
     if (!user) return res.status(401).json({ message: "Invalid Credentials" });
     //check if the password is correct
-    
+    const isPasswordValid = await bcrypt(password, user.password);
+    if(!isPasswordValid) return res.status(401).json({ message: "Invalid Credentials" });
   
     //generate cokie tken and send t the user
+    res.setHeader("set-Cookie", "test=" + "myValue");
     
   } catch (error) {
     console.log(error)
