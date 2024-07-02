@@ -1,4 +1,5 @@
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import prisma from '../lib/prisma.js';
 
 export const register = async (req, res) => {
@@ -40,6 +41,10 @@ export const login =async (req, res) => {
   
     //generate cokie tken and send t the user
     // res.setHeader("set-Cookie", "test=" + "myValue").json({message:"logged in successfully"});
+    const token = jwt.sign({
+      id:user.id
+    },process.env.JWT_SECRET_KEY)
+
     const age = 1000 * 60 *60 *24 *7
     res.cookie("test2", "myValue", {
       httpOnly: true,
