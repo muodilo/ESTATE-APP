@@ -39,7 +39,13 @@ export const login =async (req, res) => {
     if(!isPasswordValid) return res.status(401).json({ message: "Invalid Credentials" });
   
     //generate cokie tken and send t the user
-    res.setHeader("set-Cookie", "test=" + "myValue").json({message:"logged in successfully"});
+    // res.setHeader("set-Cookie", "test=" + "myValue").json({message:"logged in successfully"});
+    const age = 1000 * 60 *60 *24 *7
+    res.cookie("test2", "myValue", {
+      httpOnly: true,
+      // secure:true,
+      maxAge:age,
+    }).status(200).json({message:"Login Successfully"})
     
   } catch (error) {
     console.log(error)
