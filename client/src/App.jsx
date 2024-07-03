@@ -12,7 +12,9 @@ export default function App() {
   return (
 		<div className='layout   lg:px-32 md:px-16 px-5 relative'>
 			<div className=' h-svh'>
-				<Navbar changeVisibility={changeVisibility} />
+				<div className=''>
+					<Navbar changeVisibility={changeVisibility} />
+				</div>
 				<HomePage/>
 				{isOpen && <SidebarMenu changeVisibility={changeVisibility} />}
 			</div>
