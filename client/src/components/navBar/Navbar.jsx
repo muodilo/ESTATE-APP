@@ -21,7 +21,7 @@ const Navbar = ({ changeVisibility }) => {
 			<div class>
 				<ul className='md:flex items-center justify-end gap-5 hidden '>
 					<li>Log In</li>
-					<li className='bg-orange-300 px-5 py-2 rounded'>Sign Up</li>
+					<li className='bg-[#fece51] px-5 py-2 rounded'>Sign Up</li>
 				</ul>
 			</div>
 			<div className='md:hidden flex'>
