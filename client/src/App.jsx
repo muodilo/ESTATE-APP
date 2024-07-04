@@ -2,22 +2,36 @@ import {useState} from 'react'
 import Navbar from "./components/navBar/Navbar";
 import SidebarMenu from "./components/sidebarMenu/SidebarMenu";
 import HomePage from './routes/homePage/HomePage';
+import ListPage from './routes/listPage/ListPage';
+import {
+	createBrowserRouter,
+	RouterProvider,
+	Route,
+	Link,
+} from "react-router-dom";
+import Layout from './layout/Layout';
 
 export default function App() {
-  const [isOpen, setIsOpen] = useState(false);
 
-  const changeVisibility = (option) => {
-    setIsOpen(option);
-  }
+	
+	const router = createBrowserRouter([
+  {
+    path: "/",
+			element: <Layout />,
+			children: [
+				{
+					path: "/",
+					element:<HomePage/>
+			},
+				{
+					path: "/list",
+					element:<ListPage/>
+			},
+			]
+  },
+]);
   return (
-		<div className='layout   lg:px-32 md:px-16 px-5 relative'>
-			<div className=' h-svh'>
-				<div className=''>
-					<Navbar changeVisibility={changeVisibility} />
-				</div>
-				<HomePage/>
-				{isOpen && <SidebarMenu changeVisibility={changeVisibility} />}
-			</div>
-		</div>
+
+		<RouterProvider router={router} />
 	);
 }
